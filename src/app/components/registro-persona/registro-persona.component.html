@@ -1,0 +1,47 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/listar']">Listar</a></li>
+        <li class="breadcrumb-item active" aria-current="page">crear</li>
+    </ol>
+    </nav>
+      
+    <div class="card">
+        <div class="card-header">Registrar persona</div>
+    <div class="card-body">
+        <p>Favor diligenciar el formulario</p>
+        <form #personaForm="ngForm" (ngSubmit)="savePersona()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nombres">Nombres</label>
+                    <input type="text" class="form-control" id= "nombres" placeholder="nombres" 
+                    [(ngModel)]="persona.nombre" name="nombres" required minlength="3" #nombres="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                        <div *ngIf="nombres.errors.required">Nombre es requerido</div>
+                        <div *ngIf="nombres.errors.minlength">Nombre debe tener al menos 3 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" placeholder="apellidos"
+                    [(ngModel)]="persona.apellido" name="apellidos" required minlength="3" #apellidos="ngModel">
+                    <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                        <div *ngIf="apellidos.errors.required">Apellidos es requerido</div>
+                        <div *ngIf="apellidos.errors.minlength">Apellidos debe tener al menos 3 caracteres</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" [(ngModel)]="persona.telefono" class="form-control" id="telefono" placeholder="telefono"
+                     name="telefono" required minlength="6" #telefono="ngModel">
+                    <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                        <div *ngIf="telefono.errors.required">Telefono es requerido</div>
+                        <div *ngIf="telefono.errors.minlength">Telefono debe tener al menos 3 caracteres</div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!personaForm.form.valid">Registrar</button>
+        </form>
+    </div>
+</div>
